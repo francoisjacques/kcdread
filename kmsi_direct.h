@@ -61,7 +61,7 @@ protected:
 	int cluster2sektor (int c) {return cluster_base+c*cluster_size;};
 	int sektor2byte (int s) {return s*sektor_size;};
 	int cluster2byte (int c) {return sektor2byte(cluster2sektor(c));};
-	fatEntry next_cluster(fatEntry cl) {return fat[cl];};
+	fatEntry next_cluster(fatEntry cl);
 	virtual int copyFile (MsDosDirEntry *e);
 	virtual int copyDirectory (MsDosDirEntry *e);
 	virtual int readDirectory (MsDosDirEntry *e);
