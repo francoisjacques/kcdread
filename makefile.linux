@@ -1,0 +1,6 @@
+#makefile for kcdread
+#very simple version for gcc
+
+
+kcdread: sensecodes.cpp main.cpp direntry.cpp kmsi_direct.cpp virtualdevice.cpp
+	gcc -o kcdread sensecodes.cpp main.cpp direntry.cpp kmsi_direct.cpp virtualdevice.cpp 

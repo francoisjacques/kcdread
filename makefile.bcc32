@@ -1,0 +1,40 @@
+#makefile for kimageread
+#version for Borland compilers
+
+# binaries
+cc		= bcc32
+link	= ilink32
+
+# compiler options
+cflags	= -c -tW -O1 -5 -v-
+cvars   = -DWIN32 -D_WIN32
+
+#libraries
+objs	= c0x32.obj
+libs	= cw32i.lib import32.lib
+
+all: kcdread.exe
+
+
+# object files
+
+main.obj: main.cpp Ausgabe.h kmsi_direct.h virtualdevice.h
+    $(cc) $(cflags) $(cvars) main.cpp
+
+direntry.obj: direntry.cpp direntry.h
+    $(cc) $(cflags) $(cvars) direntry.cpp
+
+kmsi_direct.obj: kmsi_direct.cpp kmsi_direct.h Ausgabe.h sensecodes.h
+    $(cc) $(cflags) $(cvars) kmsi_direct.cpp
+
+sensecodes.obj: sensecodes.cpp sensecodes.h
+    $(cc) $(cflags) $(cvars) sensecodes.cpp
+
+virtualdevice.obj: virtualdevice.cpp virtualdevice.h
+    $(cc) $(cflags) $(cvars) virtualdevice.cpp
+
+
+# executable file
+
+kcdread.exe: sensecodes.obj main.obj direntry.obj kmsi_direct.obj virtualdevice.obj
+    $(link) $(objs) sensecodes.obj main.obj direntry.obj kmsi_direct.obj virtualdevice.obj, kcdread.exe,,$(libs)
