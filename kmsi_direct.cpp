@@ -7,7 +7,7 @@ kmsi_direct.cpp - that's where the action is. The KMSI_Direct
   information out to an abstract Ausgabe. Feel free to write
   your own implementations of these classes.
 
-Copyright (c) 2002 Marc Halbruegge
+Copyright (c) 2002-03 Marc Halbruegge
   
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -40,32 +40,36 @@ eMail: mhalbrue@uni-osnabrueck.de
 
 
 #ifdef _GCC
-  #include <endian.h>
-  #ifndef MY_BYTE_ORDER
-    #define MY_BYTE_ORDER  __BYTE_ORDER
-  #endif
+#  include <endian.h>
+#  ifndef MY_BYTE_ORDER
+#     define MY_BYTE_ORDER  __BYTE_ORDER
+#  endif
 
-  extern "C" int mkdir (char *);
-  extern "C" int chdir (char *);
-  #define kmsi_mkdir mkdir
+//Thanks to Linux Audio Developers 
+#  include <sys/stat.h>
+#  include <unistd.h>
+  
+int kmsi_mkdir (char *dir_name) {
+  return mkdir(dir_name, S_IRWXU | S_IRWXG | S_IRWXO);
+}
 #endif
 
 
 #ifndef __LITTLE_ENDIAN 
-   #define __LITTLE_ENDIAN 1234
-   #define __BIG_ENDIAN 4321
+#  define __LITTLE_ENDIAN 1234
+#  define __BIG_ENDIAN 4321
 #endif
 
 
 #ifdef _WIN32
 #ifndef MY_BYTE_ORDER
-  #define MY_BYTE_ORDER __LITTLE_ENDIAN
+#  define MY_BYTE_ORDER __LITTLE_ENDIAN
 #endif
-  #include <direct.h>
-  #define kmsi_mkdir _mkdir
+#  include <direct.h>
+#  define kmsi_mkdir _mkdir
 #else
 #ifdef _MAC
-  #define MY_BYTE_ORDER __BIG_ENDIAN
+#  define MY_BYTE_ORDER __BIG_ENDIAN
 #endif
 #endif
 
