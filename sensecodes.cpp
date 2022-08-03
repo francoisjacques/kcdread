@@ -34,7 +34,7 @@ eMail: mhalbrue@uni-osnabrueck.de
 
 #include "sensecodes.h"
 
-char *errorStrings[]={
+const char *errorStrings[]={
 	"No Error",
 	"Recovered Error",
 	"Unit not Ready",
@@ -53,7 +53,7 @@ char *errorStrings[]={
 };
 
 
-char * GetErrorString (int sense) {
+const char * GetErrorString (int sense) {
 	if (sense>=SENSE_NO_SENSE) {
 		if (sense<=MAX_SENSE_CODE) return errorStrings[sense];
 		else return "Unknown Error";

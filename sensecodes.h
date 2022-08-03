@@ -43,4 +43,4 @@ eMail: mhalbrue@uni-osnabrueck.de
 
 #define MAX_SENSE_CODE		0x0e
 
-char * GetErrorString (int sense);
+const char * GetErrorString (int sense);

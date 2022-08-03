@@ -36,7 +36,7 @@ eMail: mhalbrue@uni-osnabrueck.de
 class Ausgabe {
 public:
 	virtual ~Ausgabe() {};
-	virtual void TextAusgabe(char *string_to_write){};
+	virtual void TextAusgabe(const char *string_to_write){};
 	virtual void DateiFortschritt(int teil,int gesamt){};
 	//"teil" is the amount reached so far while "gesamt" is
 	//the total amount
