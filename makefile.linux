@@ -3,4 +3,4 @@
 
 
 kcdread: sensecodes.cpp main.cpp direntry.cpp kmsi_direct.cpp virtualdevice.cpp
-	gcc -D_GCC -o kcdread sensecodes.cpp main.cpp direntry.cpp kmsi_direct.cpp virtualdevice.cpp 
+	g++ -D_GCC -o kcdread sensecodes.cpp main.cpp direntry.cpp kmsi_direct.cpp virtualdevice.cpp 
